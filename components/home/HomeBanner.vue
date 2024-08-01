@@ -1,11 +1,11 @@
 <template>
   <ULandingHero
     :ui="{ base: 'text-start', container: 'justify-end h-[80dvh]', wrapper: 'py-0 sm:py-0 md:py-0 relative', links: 'justify-start' }"
-    title="Trade crypto and NFTs with confidence" description="Swap, earn, and build tokens and NFT">
+    title="Trade crypto and NFTs in the new lider swap" >
 
     <template #links>
       <div class="flex justify-start w-full">
-        <UButton to="/swap" target="_blank" size="xl" icon="i-heroicons-book-open" variant="soft" class="rounded-full">
+        <UButton to="/swap" target="_blank" size="xl" icon="i-heroicons-arrow-path-rounded-square" variant="soft" class="rounded-full">
           Swap
         </UButton>
 

@@ -11,10 +11,10 @@
 
         <div class="flex items-end">
           <div class="flex-1">
-            <label for="">Vender</label>
-            <UInput v-model="sellAmount" type="number" class="w-full rounded-r-none" />
+            <label for="">Sell</label>
+            <UInput v-model="sellAmount" type="number" class="w-full rounded-r-none " />
           </div>
-          <UButton :label="selectedPayToken.symbol" color="gray" @click="selectPayTokenModal = true" >
+          <UButton :label="selectedPayToken.symbol" color="gray" @click="selectPayTokenModal = true">
             <template #leading>
               <UAvatar :src="`/img/tokens/${selectedPayToken.symbol}.svg`" size="2xs" />
             </template>
@@ -24,10 +24,6 @@
         </div>
 
         <div>
-
-
-
-
           <UModal v-model="selectPayTokenModal">
             <div class="p-4">
               <UCard>
@@ -47,20 +43,46 @@
         </div>
       </div>
 
-      <div class="flex items-center justify-center gap-3">
-        <UFormGroup v-slot="{ error }" label="Comprar">
-          <UInput v-model="buyAmount" type="number" />
-        </UFormGroup>
+      <div class="flex justify-center pt-4">
+        <UButton @click="swapTokensPositions" icon="i-heroicons-arrow-path-rounded-square" 
+         size="sm" color="primary" square variant="soft" />
+      </div>
+
+      <div>
+
+        <div class="flex items-end">
+          <div class="flex-1">
+            <label for="">Buy</label>
+            <UInput v-model="buyAmount" type="number" class="w-full rounded-r-none" />
+          </div>
+          <UButton :label="selectedSellToken.symbol" color="gray" @click="selectSellTokenModal = true">
+            <template #leading>
+              <UAvatar :src="`/img/tokens/${selectedSellToken.symbol}.svg`" size="2xs" />
+            </template>
+          </UButton>
+
+
+        </div>
 
         <div>
-          <UButton label="Open" @click="isOpen = true" />
-
-          <UModal v-model="isOpen">
+          <UModal v-model="selectSellTokenModal">
             <div class="p-4">
-              <Placeholder class="h-48" />
+              <UCard>
+                <ul>
+                  <li class="token-list-item" v-for="token in tokens" @click="selectSellToken(token)">
+                    <img :src="`/img/tokens/${token.symbol}.svg`" alt="">
+                    <div>
+                      <p>{{ token.symbol }}</p>
+                      <p class="text-xs text-gray-400">{{ token.name }}</p>
+                    </div>
+
+                  </li>
+                </ul>
+              </UCard>
             </div>
           </UModal>
         </div>
+
       </div>
 
       <template #footer>
@@ -73,6 +95,7 @@
 <script setup lang="ts">
 const isOpen = ref(false);
 const selectPayTokenModal = ref(false);
+const selectSellTokenModal = ref(false);
 const tokens = ref([
   {
     name: "Bitcoin",
@@ -93,6 +116,11 @@ const selectedPayToken = ref({
   symbol: "BTC",
 });
 
+const selectedSellToken = ref({
+  name: "Ethereum",
+    symbol: "ETH",
+});
+
 const sellAmount = ref("");
 const buyAmount = ref("");
 
@@ -101,7 +129,27 @@ function selectPayToken(selectedToken) {
   selectPayTokenModal.value = false
   console.log("click", selectedToken.name);
 }
+
+function selectSellToken(selectedToken) {
+  selectedSellToken.value = selectedToken
+  selectSellTokenModal.value = false
+  console.log("click", selectedToken.name);
+}
+
+function swapTokensPositions(){
+  const oldPayToken = selectedPayToken.value
+  const oldSellToken = selectedSellToken.value
+
+  selectedPayToken.value = oldSellToken
+  selectedSellToken.value = oldPayToken
+}
 </script>
+
+
+
+
+
+
 
 <style>
 .token-list-item {
