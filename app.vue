@@ -18,7 +18,7 @@
 
   // 3. Create modal
   createWeb3Modal({ wagmiConfig, projectId, chains, themeVariables: {
-    '--w3m-accent': '#6366f1',
+    '--w3m-accent': '#49DE80',
   } })
   
 

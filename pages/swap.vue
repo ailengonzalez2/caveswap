@@ -1,7 +1,7 @@
 <template>
   <UContainer class="pt-20 max-w-lg">
     <h1 class="text-6xl text-center my-5">Swap anytime, anywhere.</h1>
-    <UCard :ui="{ background: 'bg-white dark:bg-black' }">
+    <UCard :ui="{ background: 'bg-white dark:bg-[#1f1f1f]',  ring: 'ring-0 ring-gray-200 dark:ring-none', }">
       <!-- <template #header>
         <Placeholder class="h-8" />
       </template> -->
@@ -12,9 +12,15 @@
         <div class="flex items-end">
           <div class="flex-1">
             <label for="">Sell</label>
-            <UInput v-model="sellAmount" type="number" class="w-full rounded-r-none " />
+            <UInput :ui="{
+      color: {
+        white: {
+          outline:'ring-gray-300 dark:ring-transparent dark:bg-[#1f1f1f] dark:text-white',
+        },
+      },
+    }" v-model="sellAmount" type="number" class="w-full" size="xl"/>
           </div>
-          <UButton :label="selectedPayToken.symbol" color="gray" @click="selectPayTokenModal = true">
+          <UButton :label="selectedPayToken.symbol" color="white" variant="ghost" @click="selectPayTokenModal = true" size="xl">
             <template #leading>
               <UAvatar :src="`/img/tokens/${selectedPayToken.symbol}.svg`" size="2xs" />
             </template>
@@ -44,8 +50,8 @@
       </div>
 
       <div class="flex justify-center pt-4">
-        <UButton @click="swapTokensPositions" icon="i-heroicons-arrow-path-rounded-square" 
-         size="sm" color="primary" square variant="soft" />
+        <UButton  @click="swapTokensPositions" :ui="{ rounded: 'rounded-full' }" icon="i-heroicons-arrows-up-down" size="xl" color="primary"
+          square variant="soft" />
       </div>
 
       <div>
@@ -53,9 +59,15 @@
         <div class="flex items-end">
           <div class="flex-1">
             <label for="">Buy</label>
-            <UInput v-model="buyAmount" type="number" class="w-full rounded-r-none" />
+            <UInput :ui="{
+      color: {
+        white: {
+          outline:'ring-gray-300 dark:ring-transparent dark:bg-[#1f1f1f] dark:text-white',
+        },
+      },
+    }" v-model="buyAmount" type="number" class="w-full rounded-r-none" size="xl" />
           </div>
-          <UButton :label="selectedSellToken.symbol" color="gray" @click="selectSellTokenModal = true">
+          <UButton :label="selectedSellToken.symbol" color="white" variant="ghost" @click="selectSellTokenModal = true" size="xl">
             <template #leading>
               <UAvatar :src="`/img/tokens/${selectedSellToken.symbol}.svg`" size="2xs" />
             </template>
@@ -118,7 +130,7 @@ const selectedPayToken = ref({
 
 const selectedSellToken = ref({
   name: "Ethereum",
-    symbol: "ETH",
+  symbol: "ETH",
 });
 
 const sellAmount = ref("");
@@ -136,7 +148,7 @@ function selectSellToken(selectedToken) {
   console.log("click", selectedToken.name);
 }
 
-function swapTokensPositions(){
+function swapTokensPositions() {
   const oldPayToken = selectedPayToken.value
   const oldSellToken = selectedSellToken.value
 
