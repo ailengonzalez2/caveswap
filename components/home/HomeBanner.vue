@@ -5,7 +5,7 @@
 
     <template #links>
       <div class="flex justify-start w-full">
-        <UButton to="/swap" target="_blank" size="xl" icon="i-heroicons-arrow-path-rounded-square" variant="soft" class="rounded-full">
+        <UButton to="/swap" target="_blank" size="xl" icon="i-heroicons-arrow-path-rounded-square" class="rounded-full">
           Swap
         </UButton>
 
