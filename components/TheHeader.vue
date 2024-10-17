@@ -1,7 +1,7 @@
 <template>
   <UHeader :links="links">
     <template #logo>
-      ArgenSwap
+      CaveSwap
     </template>
 
     <template #right>
@@ -28,5 +28,13 @@ const links = [
   },
 ];
 </script>
+
+<style>
+button[data-size='md'] > wui-text {
+  color: red !important;
+  --local-color: red!important;
+}
+
+</style>
 
 

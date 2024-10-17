@@ -1,7 +1,7 @@
 <template>
   <UContainer class="pt-20 max-w-lg">
     <h1 class="text-6xl text-center my-5">Swap anytime, anywhere.</h1>
-    <UCard :ui="{ background: 'bg-white dark:bg-[#1f1f1f]', ring: 'ring-0 ring-gray-200 dark:ring-none', }">
+    <UCard :ui="{ background: 'bg-gray-50 dark:bg-[#1f1f1f]', ring: 'ring-0 ring-gray-200 dark:ring-none', }">
       <!-- <template #header>
         <Placeholder class="h-8" />
       </template> -->
@@ -15,7 +15,7 @@
             <UInput :ui="{
       color: {
         white: {
-          outline: 'ring-gray-300 dark:ring-transparent dark:bg-[#1f1f1f] dark:text-white',
+          outline: 'ring-transparent dark:ring-transparent bg-gray-50 dark:bg-[#1f1f1f] dark:text-white',
         },
       },
     }" v-model="sellAmount" type="number" class="w-full " size="xl" placeholder="0" />
@@ -80,7 +80,7 @@
             <UInput :ui="{
       color: {
         white: {
-          outline: 'ring-gray-300 dark:ring-transparent dark:bg-[#1f1f1f] dark:text-white',
+          outline: 'ring-transparent dark:ring-transparent bg-gray-50 dark:bg-[#1f1f1f] dark:text-white',
         },
       },
     }" v-model="buyAmount" type="number" class="w-full rounded-r-none" size="xl" placeholder="0" />
