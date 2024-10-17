@@ -13,23 +13,23 @@
           <div class="flex-1">
             <label for="">Sell</label>
             <UInput :ui="{
-      color: {
-        white: {
-          outline: 'ring-transparent dark:ring-transparent bg-gray-50 dark:bg-[#1f1f1f] dark:text-white',
-        },
-      },
-    }" v-model="sellAmount" type="number" class="w-full " size="xl" placeholder="0" />
+              color: {
+                white: {
+                  outline: 'ring-transparent dark:ring-transparent bg-gray-50 dark:bg-[#1f1f1f] dark:text-white',
+                },
+              },
+            }" v-model="sellAmount" type="number" class="w-full " size="xl" placeholder="0" />
           </div>
           <UButton :label="selectedPayToken.symbol" color="white" variant="ghost" icon="i-heroicons-x-mark-20-solid"
             @click="selectPayTokenModal = true" size="xl" :ui="{
-      color: {
-        white: {
-          ghost: ' hover:bg-white dark:hover:bg-black',
-        },
-      },
-    }">
+              color: {
+                white: {
+                  ghost: ' hover:bg-white dark:hover:bg-black',
+                },
+              },
+            }">
             <template #leading>
-              <UAvatar :src="`/img/tokens/${selectedPayToken.symbol}.svg`" size="2xs" />
+              <UAvatar :src="selectedPayToken.image" size="2xs" />
             </template>
 
             <template #trailing>
@@ -42,18 +42,17 @@
 
         <div>
           <UModal v-model="selectPayTokenModal" :ui="{
-      overlay: {
-
-        transition: {
-          enter: 'ease-in-out duration-300',
-        },
-      }
-    }">
+            overlay: {
+              transition: {
+                enter: 'ease-in-out duration-300',
+              },
+            }
+          }">
             <div class="p-4">
               <UCard>
                 <ul>
-                  <li class="token-list-item" v-for=" token  in  tokens " @click="selectPayToken(token)">
-                    <img :src="`/img/tokens/${token.symbol}.svg`" alt="">
+                  <li class="token-list-item" v-for=" token in tokens " @click="selectPayToken(token)">
+                    <img :src="token.image" alt="">
                     <div>
                       <p>{{ token.symbol }}</p>
                       <p class="text-xs text-gray-400">{{ token.name }}</p>
@@ -78,24 +77,24 @@
           <div class="flex-1">
             <label for="">Buy</label>
             <UInput :ui="{
-      color: {
-        white: {
-          outline: 'ring-transparent dark:ring-transparent bg-gray-50 dark:bg-[#1f1f1f] dark:text-white',
-        },
-      },
-    }" v-model="buyAmount" type="number" class="w-full rounded-r-none" size="xl" placeholder="0" />
+              color: {
+                white: {
+                  outline: 'ring-transparent dark:ring-transparent bg-gray-50 dark:bg-[#1f1f1f] dark:text-white',
+                },
+              },
+            }" v-model="buyAmount" type="number" class="w-full rounded-r-none" size="xl" placeholder="0" />
           </div>
           <UButton :label="selectedSellToken.symbol" color="white" variant="ghost" @click="selectSellTokenModal = true"
             size="xl" :ui="{
-      color: {
-        white: {
-          ghost: ' hover:bg-white dark:hover:bg-black',
-        },
-      },
-    }
-      ">
+              color: {
+                white: {
+                  ghost: ' hover:bg-white dark:hover:bg-black',
+                },
+              },
+            }
+              ">
             <template #leading>
-              <UAvatar :src="`/img/tokens/${selectedSellToken.symbol}.svg`" size="2xs" />
+              <UAvatar :src="selectedSellToken.image" size="2xs" />
             </template>
             <template #trailing>
               <UIcon name="i-heroicons-chevron-down-20-solid" class="w-5 h-5" />
@@ -110,7 +109,7 @@
             <div class="p-4">
               <UCard>
                 <ul>
-                  <li class="token-list-item" v-for=" token  in  tokens " @click="selectSellToken(token)">
+                  <li class="token-list-item" v-for=" token in tokens " @click="selectSellToken(token)">
                     <img :src="`/img/tokens/${token.symbol}.svg`" alt="">
                     <div>
                       <p>{{ token.symbol }}</p>
@@ -134,6 +133,10 @@
 </template>
 
 <script setup lang="ts">
+import avaxSvg from "@/assets/images/tokens/avax.svg"
+import btcSvg from "@/assets/images/tokens/btc.svg"
+import ethSvg from "@/assets/images/tokens/eth.svg"
+
 const isOpen = ref(false);
 const selectPayTokenModal = ref(false);
 const selectSellTokenModal = ref(false);
@@ -141,25 +144,30 @@ const tokens = ref([
   {
     name: "Bitcoin",
     symbol: "BTC",
+    image: btcSvg
   },
   {
     name: "Ethereum",
     symbol: "ETH",
+    image: ethSvg
   },
   {
     name: "Avalanche",
     symbol: "AVAX",
+    image: avaxSvg
   },
 ]);
 
 const selectedPayToken = ref({
   name: "Bitcoin",
   symbol: "BTC",
+  image: btcSvg
 });
 
 const selectedSellToken = ref({
   name: "Ethereum",
   symbol: "ETH",
+  image: ethSvg
 });
 
 const sellAmount = ref("");
